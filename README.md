@@ -8,15 +8,21 @@ We have selected the musicbrainz.db dataset, a community-maintained, open source
 In Expanse terminal:
 
 - Create the MusicBrainz_project directory:
+
 mkdir -p ~/musicbrainz_project/raw_data
+
 cd ~/musicbrainz_project/raw_data
 
 - Download the data dumps
+
 wget https://data.metabrainz.org/pub/musicbrainz/data/fullexport/20260418-002325/mbdump.tar.bz2
+
 wget https://data.metabrainz.org/pub/musicbrainz/data/fullexport/20260418-002325/mbdump-derived.tar.bz2
 
 - Extract text from data dumps
+
 tar -xvf mbdump.tar.bz2
+
 tar -xvf mbdump-derived.tar.bz2
 
 ### To launch the Jupyter notebook:
