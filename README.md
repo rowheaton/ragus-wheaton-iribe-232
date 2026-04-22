@@ -6,35 +6,4 @@ We have selected the musicbrainz.db dataset, a community-maintained, open source
 
 [Data download here](https://metabrainz.org/datasets/postgres-dumps#musicbrainz)
 
-### SDSC Expanse Environment Setup
-In Expanse terminal:
-
-- To create the MusicBrainz_project directory:
-
-mkdir -p ~/musicbrainz_project/raw_data
-
-cd ~/musicbrainz_project/raw_data
-
-- To download the data dumps
-
-wget https://data.metabrainz.org/pub/musicbrainz/data/fullexport/20260418-002325/mbdump.tar.bz2
-
-wget https://data.metabrainz.org/pub/musicbrainz/data/fullexport/20260418-002325/mbdump-derived.tar.bz2
-
-- To extract text from data dumps
-
-tar -xvf mbdump.tar.bz2
-
-tar -xvf mbdump-derived.tar.bz2
-
-- SparkSession configuration
-
-Account: uci157
-Partition: shared (default)
-Cores: 4
-Memory per node: 32GB
-Environment modules to be loaded (important): cpu/0.15.4,anaconda3/2020.11
-Executor instances = 4 - 1 = 3
-Executor memory = (32 - 3) / 3 = 10GB per executor
-
-For whatever reason simply typing cpu,anaconda3 would give me an error - it only worked when explicitly typing out the version numbers. Not sure if everyone else had to do this
+### [Here is a link to a Google Doc for us to answer the questions](https://docs.google.com/document/d/1YYfNmefEvFqc3lSUBDbE2O1X1JLKW98UQk25Ylc8ffE/edit?tab=t.akt9gyi2flke)
