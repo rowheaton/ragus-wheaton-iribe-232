@@ -59,4 +59,56 @@ Our first milestone will be to build a K-Nearest Neighbors which groups music ba
 
 The data has a high volume of nulls. Depending on the data type these will need to be dealt with differently - for example, date columns might be left as nulls because imputing an "average" date probably doesn't make any sense. "Type" columns (which indicate something else for each table, but can refer to things like release type: original, bootleg, reissue, etc) have their most common entry set to 1, so nulls in that variable will likely be set to 1. There are also lots of entries in which most data is null - since the dataset is so large, some sets of rows might be filtered out completely.
 
-We will primarily use SQL for preparing the data that we will operate on, then switch over to Python for filling nulls and cleaning. Some Spark transformations we may use include join, groupBy, collect_list, StringIndexer, OneHotEncoder, CountVectorizer, VectorAssembler, Normalizer, and filter.
+***
+
+# Milestone 3
+
+### 1. Complete Preprocessing using Spark
+
+ See ```musicbrainz_v3.ipynb``` code.
+
+### 2. Training Our First Distributed Model
+
+ See ```musicbrainz_v3.ipynb``` code.
+
+### 3. Fitting Analysis
+
+We created two Random Forest models with different hyperparameters to evaluate how model complexity affected performance. Our first model used the following parameters:
+
+- Trees = 50
+- Max Depth = 10
+- Max Bins = 128
+
+This model achieved an F1 score of approximately 0.36 on the test dataset.
+
+Our second model increased the maximum tree depth while keeping the other parameters constant:
+
+- Trees = 50
+- Max Depth = 15
+- Max Bins = 128
+
+This model achieved a slightly improved F1 score of approximately 0.38.
+
+The improvement from increasing tree depth suggests that the original model was underfitting the data, since deeper trees were able to capture more complex relationships between the metadata and tag based features. Both models still appear to fall on the underfitting side of the fitting curve despite the improved performance. This is due to the noisy genre labels, sparse high-dimensional tag vectors, and the broad variability present in the MusicBrainz dataset whiah all contribute to the difficulty of this task.
+
+We also experimented with additional Random Forest configurations using larger numbers of trees and greater depths. These configurations became computationally expensive because of the scale of the dataset and the size of the generated feature vectors.
+
+The second Random Forest model performed best because the increased tree depth allowed the model to learn more detailed decision boundaries and better capture interactions between categorical metadata and tag derived features.
+
+For Milestone 4, we plan to explore dimensionality reduction techniques such as PCA and SVD. Since the CountVectorizer step produces large sparse feature vectors, reducing dimensionality may help decrease computational cost while preserving important semantic structure within the tags. We also plan to explore clustering approaches such as K-Means in order to identify latent groupings between genres, artists, or releases that may not be captured directly through supervised classification. In addition, we may experiment with other distributed models such as Gradient Boosted Trees or XGBoost to evaluate whether boosting methods can better model the complex nonlinear relationships present in the data.
+
+### 4. Conclusion
+
+Our first model demonstrated that Random Forest classifiers can learn meaningful patterns from the MusicBrainz dataset and perform multiclass genre prediction at scale. The model achieved moderate performance, with an F1 score of approximately 0.38 across the 19 genre categories. While this indicates that the model was able to capture relationships between artist metadata, labels, geographic information, and tags, the task itself was challenging due to noisy and highly variable genre labels derived from user generated tags.
+
+We experimented with adjusting hyperparameters, like number of trees and tree depth, in order to improve performance. However, increasing model complexity significantly increased computational cost and runtime because of the large scale of the dataset. A possible direction for improvement could be additional feature engineering and feature selection. Some tables in MusicBrainz contain rich numerical relationship data, while others contain sparse or noisy text metadata, so refining which features to include could improve performance without dramatically increasing computational requirements. Additional improvements could also come from improved genre normalization, balancing underrepresented genres, or experimenting with more advanced distributed models like Gradient Boosted Trees or XGBoost.
+
+Distributed computing was essential for this task because the dataset contained millions of rows and high dimensional feature vectors generated from release tags. Spark allowed us to distribute preprocessing, joins, aggregations, and model training across multiple executors rather than relying on a single machine. Distributed preprocessing techniques like CountVectorizer, StringIndexer, and VectorAssembler enabled us to efficiently transform large categorical and text-based datasets into feature vectors suitable for machine learning. Without distributed computing, processing and training on a dataset of this scale would have been nearly impossible.
+
+### Executor Summary
+
+![Executor Summary](image.png)
+
+
+### Stage Metrics
+![Stage Metrics](image-1.png)
