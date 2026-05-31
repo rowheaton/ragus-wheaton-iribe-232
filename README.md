@@ -1,8 +1,7 @@
 # Group project for DSC 232R: Big Data Analytics Using Spark
 ### Members: Tom Ragus, Roxanne Wheaton, Sergio Iribe
 
-***
-## Introduction to our project
+## Introduction to our project 🎶🧠
 
 For our project, we chose to explore the expansive “MusicBrainz” dataset, a public, open-source encyclopedia of music information with over 60GB of native SQL data in Postgres with well-defined schema. The tables include data for artists, genres, instruments, labels, mediums, releases, recordings, etc., as well as the many relationships between them.
 
@@ -11,16 +10,14 @@ We chose this particular dataset for a couple reasons. First, it is large and co
 Why is this important? Good recommender systems have the potential to greatly enrich our lives - bad ones can turn people into machines! We think this project ended up being quite interesting, between navigating the naturally very messy MusicBrainz dataset, to squeezing it into something workable, to then building our different models.
 
 
-***
-## Our Notebooks
+## Our Notebooks 📓
 
 [Milestone 2 Notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone2/musicbrainz_v2.ipynb)
 [Milestone 3 Notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone3/musicbrainz_v3.ipynb)
 [Milestone 4 Notebook]()
 
 
-***
-## Methods
+## Methods ⚙️
 
 ### Data Exploration [notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Data%20Exploration).ipynb)
 We began by installing the appropriate data dumps into our environment - “mbdump” and “mbdump-derived”. Next, we explicitly defined the schema for each table we were loading in. We ingested a handful of tables including “artist”, “instrument”, “label”, “genre”, “area”, “tag”, “gender”, and “release”, and then fed the raw data into the predefined schema to create the Spark dataframes we would use for the pipeline.
@@ -475,8 +472,7 @@ xgb_preds = xgb_model.transform(test_xgb)
 ```
 
 
-***
-## Results
+## Results 🧮
 
 ### Model 1 (your first distributed model)
 
@@ -507,8 +503,7 @@ Before training the final XGBoost model, we also trained a simple Logistic Regre
 <img width="377" height="337" alt="Screenshot 2026-05-31 at 1 28 29 PM" src="https://github.com/user-attachments/assets/baca43d0-ad2e-4aa8-bb30-ed89b0bc11fd" />
 
 
-***
-## Discussion
+## Discussion 🗣️
 
 ### Data Exploration
 
@@ -538,8 +533,7 @@ The somewhat lackluster performance of both of the RF models was kind of to be e
 We decided to go with dimensionality reduction as the next step because the raw tag vector is high dimensional and sparse, which Random Forest doesn't handle the best. PCA projects the features into a small dense space where each component captures cooccurrence structure across many tags. PCA pairs well with a linear model like Logistic Regression, so the initial model we built was a Logistic Regression model. We also tried to build an RF on the PCA-reduced data but we were running into memory errors (probably since PCA requires an RF to then aggregate across all 50 features, which is a way bigger lift than the first RF model).
 
 
-***
-## Conclusion
+## Conclusion 🔒
 
 *Next steps:*
 We can safely say that we have a model that can accurately predict a release's genre using only some metadata, a majority of the time. If we wanted to go further and pursue the ambitious goal we set out in our abstract, which was to build a recommendation system, a model like this would serve as a solid foundation to build on.
@@ -554,8 +548,8 @@ Using distributed computing also taught us about the more strict data formatting
 Most of all, this project taught us about how important it is to coordinate complex tasks effectively with a team. We were only able to complete this project because each group member made the effort to play their part. Being able to delegate tasks is one thing, but having an environment where each team member is able to bear the load when other team members are overwhelmed made this project a delight to work on.
 
 
-***
-## Statement of Collaboration
+## Statement of Collaboration 🤹
+
 - Tom: Everyone in the team was responsible and contributed equally to the project. We met regularly over the course of the entire project to discuss ideas/approach, delegate tasks in alignment with our own respective schedules, and keep each other accountable. All group members contributed equally to building out the code and written sections and deserve full credit for this project!
 
 - Roxy: Our team approached this project as a shared responsibility with each member involved in every stage of development. We had frequent discussions which allowed us to share ideas, make decisions collectively, and divide work in a way that accommodated everyone's availability. The final product reflects the combined efforts of the entire group, as all members contributed substantially to both the implementation and documentation.
