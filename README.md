@@ -1,6 +1,8 @@
 # Group project for DSC 232R: Big Data Analytics Using Spark
 ### Members: Tom Ragus, Roxanne Wheaton, Sergio Iribe
 
+👉 [MusicBrainz official organization site](https://musicbrainz.org/doc/MusicBrainz_Database)
+
 ## Introduction to our project 🎶🧠
 
 For our project, we chose to explore the expansive “MusicBrainz” dataset, a public, open-source encyclopedia of music information with over 60GB of native SQL data in Postgres with well-defined schema. The tables include data for artists, genres, instruments, labels, mediums, releases, recordings, etc., as well as the many relationships between them.
