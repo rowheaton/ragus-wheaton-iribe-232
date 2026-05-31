@@ -540,11 +540,13 @@ We decided to go with dimensionality reduction as the next step because the raw 
 ## Conclusion 🔒
 
 *Next steps:*
+
 We can safely say that we have a model that can accurately predict a release's genre using only some metadata, a majority of the time. If we wanted to go further and pursue the ambitious goal we set out in our abstract, which was to build a recommendation system, a model like this would serve as a solid foundation to build on.
 
 A good place to start with a recommendation system would be to run every release in the MusicBrainz dataset through our model and extract the genre probability distribution vector for each, then use something like cosine similarity to calculate the similarity between each release’s probability vector with all others. This would provide a genre-aware similarity metric built entirely on metadata. With this similarity metric, we could start profiling specific listeners using data from the accompanying “ListenBrainz” dataset (which, you guessed it, contains extensive listener metadata) using a similar 19-dimensional vector, representing genre preferences weighted by their listening history.
 
 *What we learned:*
+
 This was a complex project. Given the complexity of the data and task, we had to adapt our approach and expectations at each step of the process to meet each milestone. We learned that big data processing requires solid infrastructure: there is certainly no way we could have completed this project without distributed computing given the sheer mass of the data at hand. Resource management is critical. When developing locally on bite-sized datasets, it’s hard to appreciate how haphazardly one can code and not run into memory or compute issues - this was certainly not the case for this project. 
 
 Using distributed computing also taught us about the more strict data formatting requirements in Spark ML. We had to take the additional steps of encoding and vectorizing our training data before feeding it into our model, something that isn’t often necessary for simpler systems.
