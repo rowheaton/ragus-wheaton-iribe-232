@@ -286,10 +286,12 @@ As is necessary in Spark ML, we had to convert this human-readable table into a 
 cv = CountVectorizer(inputCol="tags", outputCol="tag_vector", minDF=2.0)
 cv_model = cv.fit(aggregated_df)
 vectorized_df = cv_model.transform(aggregated_df)
+
 # using StringIndexer to convert genre/gender/area into a numeric index
 genre_indexer = StringIndexer(inputCol="genre_name", outputCol="genre_index", handleInvalid="keep")
 gender_indexer = StringIndexer(inputCol="artist_gender", outputCol="gender_index", handleInvalid="keep")
 area_indexer = StringIndexer(inputCol="area_name", outputCol="area_index", handleInvalid="keep")
+
 # putting all features into a single "features" vector using VectorAssembler
 assembler = VectorAssembler(inputCols=["gender_index", "area_index", "tag_vector"], outputCol="features", handleInvalid="keep")
 ```
