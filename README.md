@@ -13,13 +13,15 @@ Why is this important? Good recommender systems have the potential to greatly en
 ## Our Notebooks 📓
 
 [Milestone 2 Notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone2/musicbrainz_v2.ipynb)
+
 [Milestone 3 Notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone3/musicbrainz_v3.ipynb)
-[Milestone 4 Notebook]()
+
+[Milestone 4 Notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4.ipynb)
 
 
 ## Methods ⚙️
 
-### Data Exploration [notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Data%20Exploration).ipynb)
+### Data Exploration ([notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Data%20Exploration).ipynb))
 We began by installing the appropriate data dumps into our environment - “mbdump” and “mbdump-derived”. Next, we explicitly defined the schema for each table we were loading in. We ingested a handful of tables including “artist”, “instrument”, “label”, “genre”, “area”, “tag”, “gender”, and “release”, and then fed the raw data into the predefined schema to create the Spark dataframes we would use for the pipeline.
 
 ```
@@ -197,7 +199,7 @@ Finally we generated helpful charts and tables to complete our data exploration.
 
 <img width="466" height="283" alt="Screenshot 2026-05-31 at 1 06 41 PM" src="https://github.com/user-attachments/assets/df6281c0-901a-4464-bb5b-27f29b84699c" />
 
-### Preprocessing (using Spark) [notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Preprocessing).ipynb)
+### Preprocessing (using Spark) ([notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Preprocessing).ipynb))
 
 Now to assemble our dataset, we combined “release”, “artist_credit_name”, “artist”, “gender”, “area”, “release_group_tag” and ”tag” tables into a single table using SQL join logic and our foreign key map. Our table at the end of this step contained columns “release name”, “artist gender”, “area name”, “tag name”, and “tag count”.
 
@@ -294,7 +296,7 @@ Final table after encoding/indexing:
 
 <img width="557" height="337" alt="Screenshot 2026-05-31 at 1 13 52 PM" src="https://github.com/user-attachments/assets/a0f1838c-5f1f-4506-8663-e78f25c81fc5" />
 
-### Model 1 (your first distributed model) [notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Model%201).ipynb)
+### Model 1 (your first distributed model) ([notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Model%201).ipynb))
 
 We began with the customary train/test split, using an 80/20 ratio. Inverse-frequency class weighting helped us address some of the class imbalance we observed during the exploration step.
 
@@ -349,7 +351,7 @@ rf_model2 = rf2.fit(train_weighted2)
 
 Finally, we outputted predictions from both models, evaluating for test accuracy, train accuracy, test F1 and train F1. We also evaluated per-class F1 scores, which allowed us to explore how consistently the models score across all classes. We will explore this further in the results section.
 
-### Model 2 (PCA/SVD + clustering or supervised) [notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Model%202).ipynb)
+### Model 2 (PCA/SVD + clustering or supervised) ([notebook](https://github.com/rowheaton/ragus-wheaton-iribe-232/blob/milestone4/musicbrainz_v4%20(Model%202).ipynb))
 
 Using the preprocessed dataframe from the preprocessing step, we scaled features and fit PCA with k = 100 to explore explained variance and cumulative variance, and to help determine ideal k-value before refitting the PCA on the dataset. The generated scree and cumulative explained variance plots provided visual helpers for identifying the k-value, which we settled on k = 50.
 
