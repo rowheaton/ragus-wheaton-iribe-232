@@ -97,8 +97,6 @@ for table_name, schema in schemas.items():
 
 <img width="621" height="281" alt="Screenshot 2026-05-31 at 1 05 35 PM" src="https://github.com/user-attachments/assets/82ee5921-48e6-4119-8e09-cd29009fb1cf" />
 
-<img width="261" height="225" alt="Screenshot 2026-05-31 at 1 06 20 PM" src="https://github.com/user-attachments/assets/e8cbe08c-66df-441c-8734-11127c9409ce" />
-
 Since the data was naturally very messy with schema defined by hand, we spent time manually defining a foreign key map for us to reference when performing joins later on in the data exploration and preprocessing stages.
 
 ```
