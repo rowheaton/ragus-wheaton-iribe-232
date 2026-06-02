@@ -1,4 +1,4 @@
-# Group project for DSC 232R: Big Data Analytics Using Spark
+# Group project for DSC 232R: MusicBrainz Genre Prediction Model
 ### Members: Tom Ragus, Roxanne Wheaton, Sergio Iribe
 
 👉 [MusicBrainz official organization site](https://musicbrainz.org/doc/MusicBrainz_Database)
